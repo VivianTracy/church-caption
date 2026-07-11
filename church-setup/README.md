@@ -54,29 +54,34 @@ npm --version
 
 ### 2. Run the project installer
 
-In **PowerShell** or **Command Prompt**:
+**Easiest — copy and paste this entire block** into PowerShell:
 
 ```powershell
 cd path\to\church-caption\church-setup
 .\install-windows.cmd
 ```
 
-Or double-click `install-windows.cmd` in File Explorer.
+You can also double-click `install-windows.cmd` in File Explorer.
+
+If `install-windows.cmd` is missing, use this **full** line (include the word `powershell` and `Bypass`):
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\install-windows.ps1
+```
 
 This runs `npm install`, creates `.env.local` from `env.example` if missing, and creates the `transcripts` folder.
 
-**Do not** combine `Set-ExecutionPolicy` with the script path on one line. These are wrong and fail:
+**Common mistakes** (these fail — do not use them):
 
 ```powershell
-# Wrong — UnexpectedToken / PositionalParameterNotFound
+# Wrong — mixes Set-ExecutionPolicy with the script path
 Set-ExecutionPolicy -Scope Process Bypass .\install-windows.ps1
-```
 
-If you prefer to call the `.ps1` directly:
+# Wrong — missing the word "powershell" and "Bypass"
+-ExecutionPolicy -File .\install-windows.ps1
 
-```powershell
-cd path\to\church-caption\church-setup
-powershell -ExecutionPolicy Bypass -File .\install-windows.ps1
+# Wrong — missing Bypass
+powershell -ExecutionPolicy -File .\install-windows.ps1
 ```
 
 ### 3. Add your API key
@@ -181,8 +186,10 @@ See [`obs/browser-source.md`](./obs/browser-source.md). Optional starter scene: 
 
 | Problem | What to check |
 |---|---|
-| `Set-ExecutionPolicy` / `PositionalParameterNotFound` / `UnexpectedToken` | Run `.\install-windows.cmd` (not `Set-ExecutionPolicy ... .\install-windows.ps1`). Or: `powershell -ExecutionPolicy Bypass -File .\install-windows.ps1` |
-| Script blocked / cannot be loaded | Use `.\install-windows.cmd`, or open PowerShell and run the Bypass `-File` command above. |
+| `-ExecutionPolicy` is not recognized | You omitted `powershell` and `Bypass`. Paste: `powershell -ExecutionPolicy Bypass -File .\install-windows.ps1` — or run `.\install-windows.cmd` |
+| `Set-ExecutionPolicy` / `PositionalParameterNotFound` / `UnexpectedToken` | Do not put the script path on the `Set-ExecutionPolicy` line. Run `.\install-windows.cmd` instead. |
+| Script blocked / cannot be loaded | Use `.\install-windows.cmd`, or the full `powershell -ExecutionPolicy Bypass -File .\install-windows.ps1` line. |
+| `install-windows.cmd` not found | Pull latest from the repo, or use the full `powershell -ExecutionPolicy Bypass -File .\install-windows.ps1` line. |
 | Empty input dropdown | Click **Allow access & refresh**. Allow microphone access when Chrome/Edge prompts. |
 | No VB-Cable in the list | Install VB-Cable, reboot, confirm OBS monitoring uses **CABLE Input**, then refresh. |
 | Wrong input after switching OBS ↔ Mic | Stop translation first. Each mode remembers its own device. |
