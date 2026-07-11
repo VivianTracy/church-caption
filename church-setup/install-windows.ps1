@@ -1,6 +1,8 @@
-# Prefer: .\install-windows.cmd
-# Or:     powershell -ExecutionPolicy Bypass -File .\install-windows.ps1
+# Prefer: .\install-windows.cmd  (PowerShell / cmd)
+# Or:     powershell -ExecutionPolicy Bypass -File ./install-windows.ps1  (Git Bash)
+# Or:     powershell -ExecutionPolicy Bypass -File install-windows.ps1
 # Do not: Set-ExecutionPolicy ... .\install-windows.ps1  (that mixes two commands)
+# Do not: use .\ paths inside Git Bash (bash turns .\file into .file)
 # ASCII-only on purpose: Windows PowerShell 5.1 misparses UTF-8 without BOM.
 
 $ErrorActionPreference = "Stop"
