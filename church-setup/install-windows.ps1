@@ -1,3 +1,7 @@
+# Prefer: .\install-windows.cmd
+# Or:     powershell -ExecutionPolicy Bypass -File .\install-windows.ps1
+# Do not: Set-ExecutionPolicy ... .\install-windows.ps1  (that mixes two commands)
+
 $ErrorActionPreference = "Stop"
 
 $RootDir = Split-Path -Parent $PSScriptRoot

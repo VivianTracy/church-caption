@@ -16,9 +16,12 @@ case "$choice" in
     ;;
   2)
     echo
-    echo "On Windows, run in PowerShell:"
+    echo "On Windows, run in PowerShell or Command Prompt:"
     echo "  cd church-setup"
-    echo "  powershell -ExecutionPolicy Bypass -File install-windows.ps1"
+    echo "  .\\install-windows.cmd"
+    echo
+    echo "Or double-click install-windows.cmd in File Explorer."
+    echo "Do not pass the script path to Set-ExecutionPolicy."
     ;;
   *)
     echo "Invalid choice."

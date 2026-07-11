@@ -54,12 +54,30 @@ npm --version
 
 ### 2. Run the project installer
 
+In **PowerShell** or **Command Prompt**:
+
 ```powershell
 cd path\to\church-caption\church-setup
-powershell -ExecutionPolicy Bypass -File install-windows.ps1
+.\install-windows.cmd
 ```
 
+Or double-click `install-windows.cmd` in File Explorer.
+
 This runs `npm install`, creates `.env.local` from `env.example` if missing, and creates the `transcripts` folder.
+
+**Do not** combine `Set-ExecutionPolicy` with the script path on one line. These are wrong and fail:
+
+```powershell
+# Wrong — UnexpectedToken / PositionalParameterNotFound
+Set-ExecutionPolicy -Scope Process Bypass .\install-windows.ps1
+```
+
+If you prefer to call the `.ps1` directly:
+
+```powershell
+cd path\to\church-caption\church-setup
+powershell -ExecutionPolicy Bypass -File .\install-windows.ps1
+```
 
 ### 3. Add your API key
 
@@ -163,6 +181,8 @@ See [`obs/browser-source.md`](./obs/browser-source.md). Optional starter scene: 
 
 | Problem | What to check |
 |---|---|
+| `Set-ExecutionPolicy` / `PositionalParameterNotFound` / `UnexpectedToken` | Run `.\install-windows.cmd` (not `Set-ExecutionPolicy ... .\install-windows.ps1`). Or: `powershell -ExecutionPolicy Bypass -File .\install-windows.ps1` |
+| Script blocked / cannot be loaded | Use `.\install-windows.cmd`, or open PowerShell and run the Bypass `-File` command above. |
 | Empty input dropdown | Click **Allow access & refresh**. Allow microphone access when Chrome/Edge prompts. |
 | No VB-Cable in the list | Install VB-Cable, reboot, confirm OBS monitoring uses **CABLE Input**, then refresh. |
 | Wrong input after switching OBS ↔ Mic | Stop translation first. Each mode remembers its own device. |
