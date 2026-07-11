@@ -1,5 +1,5 @@
 @echo off
-REM Church Caption — Windows installer wrapper
+REM Church Caption - Windows installer wrapper
 REM Runs install-windows.ps1 with ExecutionPolicy Bypass so volunteers
 REM do not need to change PowerShell policy settings.
 

@@ -188,6 +188,7 @@ See [`obs/browser-source.md`](./obs/browser-source.md). Optional starter scene: 
 |---|---|
 | `-ExecutionPolicy` is not recognized | You omitted `powershell` and `Bypass`. Paste: `powershell -ExecutionPolicy Bypass -File .\install-windows.ps1` — or run `.\install-windows.cmd` |
 | `Set-ExecutionPolicy` / `PositionalParameterNotFound` / `UnexpectedToken` | Do not put the script path on the `Set-ExecutionPolicy` line. Run `.\install-windows.cmd` instead. |
+| Unexpected token `}` / `&` / `&&` when running `.ps1` | Old copy of the script used UTF-8 dashes that Windows PowerShell 5.1 misreads. Pull the latest `install-windows.ps1` (ASCII-only) and run again. |
 | Script blocked / cannot be loaded | Use `.\install-windows.cmd`, or the full `powershell -ExecutionPolicy Bypass -File .\install-windows.ps1` line. |
 | `install-windows.cmd` not found | Pull latest from the repo, or use the full `powershell -ExecutionPolicy Bypass -File .\install-windows.ps1` line. |
 | Empty input dropdown | Click **Allow access & refresh**. Allow microphone access when Chrome/Edge prompts. |
