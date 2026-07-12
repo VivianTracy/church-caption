@@ -16,9 +16,16 @@ case "$choice" in
     ;;
   2)
     echo
-    echo "On Windows, run in PowerShell:"
+    echo "On Windows, prefer double-clicking install-windows.cmd,"
+    echo "or in PowerShell:"
     echo "  cd church-setup"
-    echo "  powershell -ExecutionPolicy Bypass -File install-windows.ps1"
+    echo "  .\\install-windows.cmd"
+    echo
+    echo "In Git Bash, use forward slashes:"
+    echo "  powershell -ExecutionPolicy Bypass -File ./install-windows.ps1"
+    echo
+    echo "Do not pass the script path to Set-ExecutionPolicy."
+    echo "Do not use .\\ paths inside Git Bash."
     ;;
   *)
     echo "Invalid choice."
